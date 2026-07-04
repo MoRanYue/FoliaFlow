@@ -4,7 +4,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import xyz.hynse.foliaflow.command.ReloadCommand;
-import xyz.hynse.foliaflow.util.CheckSafeTeleportation;
 import xyz.hynse.foliaflow.watcher.PortalWatcher;
 
 import java.io.File;
@@ -14,13 +13,11 @@ import java.io.InputStreamReader;
 
 public class FoliaFlow extends JavaPlugin {
     private boolean isFirstEnable = true;
-    //public boolean isUnSafeTeleport = false;
     public static FoliaFlow instance;
     public static double horizontalCoefficient;
     public static double verticalCoefficient;
     public static double spawnHeight;
     public static double TeleportOffset;
-    //public static CheckSafeTeleportation checkSafeTeleportation;
 
     @Override
     public void onEnable() {
@@ -66,8 +63,6 @@ public class FoliaFlow extends JavaPlugin {
 
     private void register() {
         getCommand("flowreload").setExecutor(new ReloadCommand());
-//        checkSafeTeleportation = new CheckSafeTeleportation();
-//        checkSafeTeleportation.updateSafeTeleportation();
         getServer().getPluginManager().registerEvents(new PortalWatcher(), this);
     }
 }

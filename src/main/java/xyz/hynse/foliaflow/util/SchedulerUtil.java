@@ -10,10 +10,11 @@ public class SchedulerUtil {
 
     private static boolean tryFolia() {
         try {
-            Bukkit.getAsyncScheduler();
+            Class.forName("io.papermc.paper.threadedregions.RegionizedServer");
             return true;
-        } catch (Throwable ignored) {}
-        return false;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
     }
 
     public static Boolean isFolia() {
@@ -22,7 +23,10 @@ public class SchedulerUtil {
     }
 
     public static void runLaterEntity(Entity entity, Plugin plugin, Runnable runnable, int ticks) {
-        if (isFolia()) entity.getScheduler().runDelayed(plugin, (task) -> runnable.run(), null, ticks);
-        else Bukkit.getScheduler().runTaskLater(plugin, runnable, ticks);
+        if (isFolia()) {
+            entity.getScheduler().runDelayed(plugin, (task) -> runnable.run(), null, ticks);
+        } else {
+            Bukkit.getScheduler().runTaskLater(plugin, runnable, ticks);
+        }
     }
 }

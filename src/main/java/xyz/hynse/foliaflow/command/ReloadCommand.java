@@ -1,6 +1,7 @@
 package xyz.hynse.foliaflow.command;
 
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,9 +14,9 @@ public class ReloadCommand implements CommandExecutor {
         if (!sender.hasPermission("foliaflow.reload")) return true;
         try {
             FoliaFlow.instance.reload();
-            sender.sendMessage(ChatColor.YELLOW + "FoliaFlow reloaded.");
+            sender.sendMessage(Component.text("FoliaFlow reloaded.").color(NamedTextColor.YELLOW));
         } catch (Exception e) {
-            sender.sendMessage(ChatColor.RED + "Something went wrong reloading FoliaFlow, see the console for more.");
+            sender.sendMessage(Component.text("Something went wrong reloading FoliaFlow, see the console for more.").color(NamedTextColor.RED));
             e.printStackTrace();
         }
         return true;
