@@ -1,7 +1,7 @@
 name: FoliaFlow
 version: '${version}'
 main: xyz.hynse.foliaflow.FoliaFlow
-api-version: '26.1.2'
+api-version: '26.3'
 folia-supported: true
 commands:
   flowreload:
